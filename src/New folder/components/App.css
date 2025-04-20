@@ -1,0 +1,178 @@
+.App {
+  text-align: center;
+  min-height: 100%;
+}
+
+
+.App-logo {
+  height: 40vmin;
+  /* pointer-events: none; */
+}
+/* 
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+} */
+
+.App-header {
+/*  background-color: #A20E37;*/
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.header {
+
+/*  background-color: #a4c991;*/
+
+  /* padding: 10px 20px; */
+
+  color: white;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  /* align-items: center; */
+  width: 100%;
+  position: fixed;
+
+}
+.form-control {
+  /* display: block; */
+  width: 50%;
+ 
+  
+}
+.formname{
+  margin-left: 34%;
+}
+
+.center {
+  display: flex;
+  justify-content: 'center';
+  align-items: 'center';
+  
+}
+.navbar{
+/*  background-color: #A20E37;*/
+  width: 100%;
+  position: fixed !important;
+  /* z-index: 9999;  */
+
+}
+
+/* From.css */
+.form-container {
+	width: 400px;
+	margin: auto;
+	padding: 20px;
+	background-color: #f9f9f9;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.card
+{
+  margin-bottom: 10%;
+}
+
+.form-title {
+	margin-bottom: 20px;
+	font-size: 24px;
+	color: #333;
+}
+
+
+.form-label {
+	display: block;
+	margin-bottom: 8px;
+	color: #333;
+}
+
+
+.form-input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+
+.error-message {
+	color: #ff0000;
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+
+.submit-button {
+	padding: 10px 20px;
+	background-color: #0d427a;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+	background-color: #082647;
+}
+.footer {
+  background-color:#A20E37;
+  border-top: 2px solid #FBBC09;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  margin-bottom: auto;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+body {
+  margin: 0; 
+  margin-bottom: 5px;
+  margin-top: 5px;
+  height: 100%; 
+   overflow: hidden; 
+}
+.linkStyle1  {
+  margin: "1rem";
+  float:right;
+  margin-left: auto;
+  color: white;
+ 
+}
