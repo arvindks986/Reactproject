@@ -34,6 +34,7 @@ function Update()
     
 
     let { id } = useParams();
+   // console.log(id,"aaaaaaaaaa");
   
     const [errors, setErrors] = useState({});
     const [employee, setemployee] = useState({

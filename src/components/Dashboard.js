@@ -14,32 +14,20 @@ import {isTokenExpired,refreshTokenExpired} from "../Helper/helper.js";
 Chart.register(CategoryScale);
   
 const Dashboard=()=>{
-    const token=JSON.parse(localStorage.getItem('token'));
-    const refreshToken=JSON.parse(localStorage.getItem('refreshToken'));
+   // const token=JSON.parse(localStorage.getItem('token'));
+    //const refreshToken=JSON.parse(localStorage.getItem('refreshToken'));
+    const user=JSON.parse(localStorage.getItem('user'));
    const myname = useContext(BioContext)
    //console.log(myname,"121212121212================232323232");
     const [count,setCount]=useState("");
     useDocumentTitle("Dashboard");
     const navigate = useNavigate();
-   
+    const id= user.id;
     
    // console.log(token,"hello",refreshToken);
     useEffect(() => {
         
-     if (isTokenExpired(token)) {
-        alert("notcome back");
-      //  console.log(token,"asassas====================");
-          //alert(refreshToken,"dssdsd");
-           const isTokenExpiredis =refreshTokenExpired(refreshToken)
      
-             if(refreshTokenExpired(refreshToken))
-             {
-                navigate('/logout')
-             }else{
-               //alert(isTokenExpiredis) 
-             }
-
-            }
        
      //  var email=JSON.stringify(userdata.email);
      //  console.log(email);
@@ -50,9 +38,11 @@ const Dashboard=()=>{
         //axios.get(`http://localhost:8010/api/getcount?id=${id}`).then(res => {
 
             //NodeJs Port 8081
-       axios.get(`http://localhost:8081/api/`).then(res => {
-                // console.log(res.data.list);
-                setCount(res.data.list);
+          //  var id={"data":id};
+          const ids=222;
+       axios.post(`http://localhost:8081/api/countrecord?id=${id}`).then(res => {
+               // console.log(res.data.count,"1111111111111111");
+                setCount(res.data.count);
              });
 
             /* axios.get('http://localhost:8081/api',{

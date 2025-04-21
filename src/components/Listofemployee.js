@@ -106,7 +106,7 @@ const Listofemployee = (page) => {
                        
             
             </td>
-            <td><Link to={`/update/${item.id}`} className="btn btn-success">Update</Link></td>
+            <td><Link to={`/update/${item._id}`} className="btn btn-success">Update</Link></td>
             
           </tr>
 
