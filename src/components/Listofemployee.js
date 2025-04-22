@@ -1,6 +1,7 @@
 import React, { useEffect,useState,useRef} from "react";
 import axios from "axios";
-import {Link} from "react-router-dom";
+import {Link,useNavigate} from "react-router-dom";
+import useDocumentTitle from "./useDocumentTitle";
 import autoTable from 'jspdf-autotable';
 //import { datais } from "./routers/indexrouters.js";
 import Invoice from "./Invoice/Invoice";
@@ -9,6 +10,9 @@ import jsPDF from 'jspdf';
 import html2canvas from "html2canvas";
 
 const Listofemployee = (page) => {
+
+  const Navigate =useNavigate();
+    useDocumentTitle("List");
   
   const pdfRef=useRef();
   const childRef = useRef();
@@ -23,7 +27,7 @@ const Listofemployee = (page) => {
     //console.log(user.email,"hindi");
     const fetchProducts = async (page) => {
       try {
-        const response = axios.get(`http://localhost:8081/api/employeelist/?userid=${user.id}&page=${page}&pageSize=2`)
+        const response = axios.get(`http://localhost:8081/api/employeelist/?userid=${user.id}&page=${page}&pageSize=10`)
         .then(res=>{
         setListviewapi(res.data.list)
         setTotalPages(res.data.totalPages);

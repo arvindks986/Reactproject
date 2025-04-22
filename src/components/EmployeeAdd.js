@@ -20,7 +20,7 @@ const EmployeeAdd = () => {
     //const [errors, setErrors] = useState({});
     //const [file, setSelectedFile] = useState("");
   //  const [loadimage, setLoadimage] = useState([]);
-    const [fileData, setFileData] = useState("");
+    const [fileData, setFileData] = useState([]);
     const [username, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("0");
@@ -29,48 +29,29 @@ const EmployeeAdd = () => {
    
     const [errorson, setErrors] = useState([]);
 
+    console.log(setFileData,"+++++===");
+
 //   function handleChange(event) {
 //     setFile(event.target.files[0])
 //   }
 
+//For Single File Upload
+// const getFile = (e) => {
+//   setFileData(e.target.files[0]);
 
-const getFile = (e) => {
-  setFileData(e.target.files[0]);
+// };
+const getFile = (event) => {
+  setFileData(Array.from(event.target.files));
 };
+
 
   const saveForm = async(event) => {
     //alert(token);
     //alert(refreshToken);
     event.preventDefault();
-    if (isTokenExpired(token)) {
-     //alert(refreshToken,"dssdsd");
-      //const isTokenExpiredis =refreshTokenExpired(refreshToken)
+   
 
-        if(refreshTokenExpired(refreshToken))
-        {
-          Navigate('/logout')
-        }
-        else{
-       
-          const config = {
-            headers: {
-              
-              'authorization':refreshToken
-            },
-          };
-         
-        axios.get(`http://localhost:8081/api/refreshtoken`,config)
-        .then(response => {
-          toast("Refresh Token Update");
-            const token=localStorage.setItem("token", JSON.stringify(response.data.refreshToken));
-            toast(token);
-        })
-        .catch( err => console.log(err))
-        }
-      // router.push('/login');
-     } else{
-      //alert("Not Expaire original AccessToken");
-     }
+        
     
    // event.preventDefault()
     //const url = 'http://localhost:8010/api/reactlaravelapi';
@@ -80,10 +61,15 @@ const getFile = (e) => {
     data.append("username", username);
     data.append("email", email);
     data.append("phone", phone);
-    data.append('file', fileData);
+   // data.append('file', fileData);
    // data.append('fileName', file.name);
     data.append('UserID', UserID);
 
+    fileData.forEach((file) => {
+      data.append('file', file);
+    });
+
+   // console.log(data,"----------File Upload ++++++");
     // const userData = {
     //   email: email,
     //   username: username,
@@ -191,7 +177,7 @@ const getFile = (e) => {
              
                
              <br></br>
-             <input type="file" name="file" onChange={getFile} required />
+             <input type="file" name="file" onChange={getFile} required  multiple/>
           {/* <input type="file" name="photo" id="photo" accept=".png, .jpg" onChange={(e) => setSelectedFile(e.target.files[0])} />
            */}
           <img src=""></img>
