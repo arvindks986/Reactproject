@@ -10,7 +10,7 @@ import  './assets/01.jpg';
  import { useNavigate } from "react-router-dom";
 import MyRouter from './routers/indexrouters.js';
 import Error from "./Errorpage.js";
-import Footer from './Footer.js';
+import Footer from './Footer';
 import  { BioProvider,BioContext } from "./ContextApi";
 import { ToastContainer } from 'react-toastify';
 import {isTokenExpired,refreshTokenExpired} from "../Helper/helper.js";

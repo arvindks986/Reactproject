@@ -21,6 +21,7 @@ const Listofemployee = (page) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const[list,setListviewapi]=useState([]);
+  const[search,setSearch]=useState("");
   //  const useridis=useContext(datais);
     //console.log(useridis);
     const user=JSON.parse(localStorage.getItem("user"));
@@ -93,11 +94,13 @@ const Listofemployee = (page) => {
   
   var listdetails="";
   const path="http://localhost:8081/";
-  listdetails=list.map(  (item,index)=>{
+  listdetails=list.filter((item) => {
+   return search.toLowerCase() === '' ? item :item.name.toLowerCase().includes(search);
+  }).map(  (item,index)=>{
    
     return(
     
-          <tr key={index} >
+          <tr key={index._id} >
             <td>{index+1}</td>
             <td>{item.name}</td>
             <td>{item.email}</td>
@@ -128,6 +131,12 @@ const Listofemployee = (page) => {
              <div className="card">
              <div className="card-header">
              {/* <h3><Link to="/pdflist" className="btn btn-primary float-end">PDF</Link></h3> */}
+
+             <input type="text" onKeyDown={(e) => setSearch(e.target.value)} placeholder="Search by Name" />
+                      
+                    
+                    
+                
                 <h3><Link to="/addemp" className="btn btn-primary float-end">ADD EMPLOYEE</Link></h3>
                 </div> 
              
