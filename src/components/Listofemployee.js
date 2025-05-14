@@ -8,14 +8,23 @@ import Invoice from "./Invoice/Invoice";
 import ApplyFilter  from "./Invoice/ApplyFilter";
 import jsPDF from 'jspdf';
 import html2canvas from "html2canvas";
+import Reactmodel from "./Reactmodel";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Dropdown from 'react-bootstrap/Dropdown';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
 
 const Listofemployee = (page) => {
 
-  const Navigate =useNavigate();
+  const Navigate = useNavigate();
     useDocumentTitle("List");
   
   const pdfRef=useRef();
   const childRef = useRef();
+  
+
+  
+  const[Modelis, setModelis]= useState();
   
   const [pdfContent, setPdfContent] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,11 +32,12 @@ const Listofemployee = (page) => {
   const[list,setListviewapi]=useState([]);
   const[search,setSearch]=useState("");
   //  const useridis=useContext(datais);
-    //console.log(useridis);
+ 
     const user=JSON.parse(localStorage.getItem("user"));
-    //console.log(user.email,"hindi");
+  
     const fetchProducts = async (page) => {
       try {
+        alert(page);
         const response = axios.get(`http://localhost:8081/api/employeelist/?userid=${user.id}&page=${page}&pageSize=10`)
         .then(res=>{
         setListviewapi(res.data.list)
@@ -37,11 +47,12 @@ const Listofemployee = (page) => {
         console.log(error);
       }
     };
-    useEffect( () => {
-    
-      console.log(childRef.current)
 
-    })
+
+    useEffect( () => {
+     console.log(childRef.current)
+     })
+
     const Invoice =()=> {
     function Invoice(){
       console.log("Here is on");
@@ -72,7 +83,7 @@ const Listofemployee = (page) => {
       });
     }
 
-
+    const handleClose = () => setModelis(false);
    
 
   useEffect(() => {
@@ -113,9 +124,32 @@ const Listofemployee = (page) => {
                        
             
             </td>
-            <td><Link to={`/update/${item._id}`} className="btn btn-success">Update</Link></td>
-            
+            <td>
+              
+              
+              {/* <Link to={`/update/${item._id}`} className="btn btn-success">Update</Link> */}
+              
+              
+               <Dropdown as={ButtonGroup}>
+      <Button variant="success">Take Action</Button>
+
+      <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+      <Dropdown.Menu>
+        <Dropdown.Item href={`/update/${item._id}`}>Update</Dropdown.Item>
+        <Dropdown.Item href={`/forwardupdate/${item._id}`}>Forward</Dropdown.Item>
+        
+      </Dropdown.Menu>
+    </Dropdown>
+              
+              
+              </td>
+           {/* <td><button className="btn btn-info" onClick={()=>setModelis(true)}>Forward</button></td>  */}
+             {/* <td><Link to={`/forwardupdate/${item._id}`} className="btn btn-info">Forward</Link></td>  */}
+          
           </tr>
+        
+
 
       
     )
@@ -132,7 +166,7 @@ const Listofemployee = (page) => {
              <div className="card-header">
              {/* <h3><Link to="/pdflist" className="btn btn-primary float-end">PDF</Link></h3> */}
 
-             <input type="text" onKeyDown={(e) => setSearch(e.target.value)} placeholder="Search by Name" />
+             <input type="text" onKeyDown={(e) => setSearch(e.target.value.toLowerCase())} placeholder="Search by Name" />
                       
                     
                     
@@ -171,6 +205,9 @@ const Listofemployee = (page) => {
                         </thead>
                         <tbody >{listdetails}</tbody>
                     </table>
+                    {Modelis && <Reactmodel />}
+                   
+                    {/* { Modelis && <Reactmodel />} */}
                     </div>  
                    
                 </div>   
@@ -183,6 +220,7 @@ const Listofemployee = (page) => {
         Next Page
       </button>
       <br></br>
+     
             </div>
            
 

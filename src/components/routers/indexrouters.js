@@ -6,16 +6,17 @@ import EmployeeAdd from "../EmployeeAdd.js";
 import Registration from "../Registration.js";
 import Login from "../Login.js";
 import Logout from "../Logout.js";
- import Pdf_report from  "../Pdf_report.js";
+ //import Pdf_report from  "../Pdf_report.js";
 import Update from "../Update.js";
 import OtpVerify from "../OtpVerify.js";
 import React ,{ Suspense, createContext } from "react";
 import Dashboard from "../Dashboard.js";
 import Home from "../Home.js";
 import Error from "../Errorpage.js";
-import HooksFilesCheck from "../HooksFilesCheck.js"
+//import HooksFilesCheck from "../HooksFilesCheck.js"
 import Listofemployee from "../Listofemployee.js"
 import { UseReduce } from "../Hook/UseReduse.js";
+import Reactmodel from "../Reactmodel.jsx";
 
 
     const datais=createContext();
@@ -31,7 +32,7 @@ function MyRouter(props){
      <Routes>
       
       <Route path="*" element={<Error />} errorElement={<Error />} />
-     <Route path="/pdfreport" element={<Pdf_report />} ></Route> 
+     {/* <Route path="/pdfreport" element={<Pdf_report />} ></Route>  */}
      <Route path="/addemp" element={<EmployeeAdd />}></Route>
      <Route path="/dashboard" element={<Dashboard />} ></Route>
      <Route path="/" element={<Home />} ></Route>
@@ -47,6 +48,7 @@ function MyRouter(props){
    
     <Route path="/checkhoo" element={<UseReduce />} >Hook</Route>
     <Route path="/update/:id" element={<Update />} ></Route>
+    <Route path="/forwardupdate/:id" element={<Reactmodel />}> </Route>
     <Route path="/emp" element={<Addemployee />} ></Route>
     
     <Route path="/otpverify/:id" element={<OtpVerify />} ></Route>
